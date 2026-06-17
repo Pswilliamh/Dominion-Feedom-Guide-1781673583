@@ -30,7 +30,7 @@ interface NavigationDockProps {
 
 export function NavigationDock({ onGeminiClick }: NavigationDockProps) {
   return (
-    <aside className="w-32 bg-navigation flex flex-col items-center py-8 gap-4 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent hover:scrollbar-thumb-white/30">
+    <aside className="w-32 bg-navigation flex flex-col items-center py-8 gap-4 overflow-y-auto sidebar-scroll">
       {modules.map((module) => {
         const Icon = module.icon;
         return (
