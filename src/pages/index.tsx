@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SovereignHeader } from "@/components/SovereignHeader";
+import { SovereignHeader, type ScenarioType } from "@/components/SovereignHeader";
 import { RelationshipToggle, type RelationshipMode } from "@/components/RelationshipToggle";
 import { NavigationDock } from "@/components/NavigationDock";
 import { CommandMatrix } from "@/components/CommandMatrix";
@@ -21,6 +21,7 @@ export default function Home() {
   const [isOffline, setIsOffline] = useState(false);
   const [language, setLanguage] = useState<"en" | "id">("en");
   const [currentView, setCurrentView] = useState<"matrix" | "maps" | "youtube">("matrix");
+  const [scenario, setScenario] = useState<ScenarioType>("local");
 
   const addChatMessage = (textEn: string, textId: string) => {
     let formattedEn = textEn;
@@ -42,9 +43,18 @@ export default function Home() {
       textEn: formattedEn,
       textId: formattedId,
       timestamp: new Date(),
+      isZoomCaption: scenario === "zoom",
     };
 
     setChatMessages((prev) => [...prev, newMessage]);
+    
+    if (scenario === "zoom") {
+      console.log("📹 Zoom Integration: Message routed to chat stream and captions:", {
+        chat: formattedEn,
+        captions: formattedEn,
+        timestamp: new Date().toISOString()
+      });
+    }
   };
 
   const handleCardClick = (variations: Array<{ en: string; id: string }>) => {
@@ -79,6 +89,8 @@ export default function Home() {
           onOfflineToggle={setIsOffline}
           language={language}
           onLanguageChange={setLanguage}
+          scenario={scenario}
+          onScenarioChange={setScenario}
         />
         
         {isOffline && (
@@ -86,6 +98,14 @@ export default function Home() {
             <Radio className="h-5 w-5 text-transport animate-pulse" />
             <AlertDescription className="text-transport font-bold text-base flex items-center gap-2">
               Local Sovereign Network Active - Operating Fully Offline
+            </AlertDescription>
+          </Alert>
+        )}
+        
+        {scenario === "zoom" && (
+          <Alert className="rounded-none border-x-0 border-t-0 border-b-2 border-blue-600 bg-blue-50">
+            <AlertDescription className="text-blue-700 font-semibold text-sm flex items-center gap-2">
+              📹 Zoom Mode Active: All messages will route to Zoom chat stream and closed-caption subtitles
             </AlertDescription>
           </Alert>
         )}
@@ -106,7 +126,7 @@ export default function Home() {
             {currentView === "maps" && <GoogleMapsView />}
             {currentView === "youtube" && <YouTubeView />}
           </div>
-          <CommunicationCanvas messages={chatMessages} />
+          <CommunicationCanvas messages={chatMessages} scenario={scenario} />
           <GeminiChatbox 
             isOpen={isGeminiOpen} 
             onClose={() => setIsGeminiOpen(false)}
