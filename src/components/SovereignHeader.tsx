@@ -118,7 +118,7 @@ export function SovereignHeader({
                       <span className="text-2xl">👑❤️🌱</span>
                       <div>
                         <h4 className="font-bold text-base mb-1">Relationship Modifiers</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                           Dynamic emotional tone adjustment with Formal, Endearment, and Peer modes. 
                           Automatically adds culturally-appropriate prefixes to all communications.
                         </p>
@@ -129,7 +129,7 @@ export function SovereignHeader({
                       <span className="text-2xl">🎯📱</span>
                       <div>
                         <h4 className="font-bold text-base mb-1">Visual Dictionary Matrices</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                           Tactile micro-icons for rapid communication. Categories include Nourishment, Wardrobe, 
                           Transport, Security, Financial, and Daily Life with sub-item visual representations.
                         </p>
@@ -140,7 +140,7 @@ export function SovereignHeader({
                       <span className="text-2xl">📡💬</span>
                       <div>
                         <h4 className="font-bold text-base mb-1">Dual-Sovereignty Routing</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                           WhatsApp Web Bridge for remote monitoring AND Local Offline Mesh Network for 
                           peer-to-peer communication without internet dependency.
                         </p>
@@ -151,7 +151,7 @@ export function SovereignHeader({
                       <span className="text-2xl">🏡📹</span>
                       <div>
                         <h4 className="font-bold text-base mb-1">Home School Classroom Zoom Bridge</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                           Real-time integration with Zoom Meeting SDK. Messages route to chat stream and 
                           closed-caption subtitle arrays for remote learning environments.
                         </p>
@@ -162,7 +162,7 @@ export function SovereignHeader({
                       <span className="text-2xl">🎤🔊</span>
                       <div>
                         <h4 className="font-bold text-base mb-1">Local Dictation Microphone & Offline Text-to-Speech Output</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                           Native browser Speech Recognition API for voice-to-text conversion. 
                           Text-to-Speech synthesis using window.speechSynthesis — works 100% offline.
                         </p>
@@ -181,16 +181,16 @@ export function SovereignHeader({
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-base leading-relaxed text-foreground">
+                  <p className="text-base leading-relaxed" style={{ color: "#000000" }}>
                     <strong>Technology Notification:</strong> The design features and routing matrices of this app have 
                     utilized advanced AI technology. For more information about bulk subscriptions for homeschooling or 
                     technology providers, please contact our support email.
                   </p>
                   <div className="bg-accent/10 border-l-4 border-accent p-4 rounded">
-                    <p className="text-sm font-semibold text-accent">
+                    <p className="text-base font-semibold text-accent">
                       📧 Support Contact: support@sovereignembassy.org
                     </p>
-                    <p className="text-xs text-muted-foreground mt-2">
+                    <p className="text-base mt-2" style={{ color: "#0B3C5D" }}>
                       Available for enterprise licensing, educational institution partnerships, and technical integration support.
                     </p>
                   </div>
@@ -217,8 +217,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">👑</span>
                         <div>
-                          <p className="font-bold text-sm">Formal Mode</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Formal Mode</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Adds "Sir/Ma'am" (English) or "Pak/Bu" (Indonesian) prefix. 
                             Best for professional or respectful contexts.
                           </p>
@@ -227,8 +227,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">❤️</span>
                         <div>
-                          <p className="font-bold text-sm">Endearment Mode</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Endearment Mode</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Adds "Dear" (English) or "Sayang" (Indonesian) prefix. 
                             For close relationships and family settings.
                           </p>
@@ -237,8 +237,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">🌱</span>
                         <div>
-                          <p className="font-bold text-sm">Peer Mode</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Peer Mode</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Adds "Hey" (English) or "Hei" (Indonesian) prefix. 
                             For casual friend-to-friend communication.
                           </p>
@@ -263,8 +263,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">🏫</span>
                         <div>
-                          <p className="font-bold text-sm">Local Classroom</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Local Classroom</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Peer-to-peer mesh network. Works 100% offline. 
                             Messages route between devices via Bluetooth/WiFi mesh.
                           </p>
@@ -273,8 +273,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">💬</span>
                         <div>
-                          <p className="font-bold text-sm">Special-Needs Class</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Special-Needs Class</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Routes through WhatsApp Web Bridge API. 
                             Guardians monitor remotely via WhatsApp.
                           </p>
@@ -283,8 +283,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">🏡</span>
                         <div>
-                          <p className="font-bold text-sm">Home Schooling</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Home Schooling</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Zoom Meeting SDK integration. Messages appear in 
                             Zoom chat stream and closed-caption subtitles.
                           </p>
@@ -309,8 +309,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">🎯</span>
                         <div>
-                          <p className="font-bold text-sm">Tactile Cards</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Tactile Cards</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Tap category cards (Nourishment, Wardrobe, Transport) 
                             to instantly send pre-built phrases with 4 natural variations.
                           </p>
@@ -319,8 +319,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">⌨️</span>
                         <div>
-                          <p className="font-bold text-sm">Manual Typing</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Manual Typing</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Type custom messages in the bottom input bar. 
                             Press SPEAK to hear it aloud via native browser TTS.
                           </p>
@@ -329,8 +329,8 @@ export function SovereignHeader({
                       <div className="flex items-start gap-2">
                         <span className="text-xl">🎤</span>
                         <div>
-                          <p className="font-bold text-sm">Microphone Dictation</p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="font-bold text-base mb-1">Microphone Dictation</p>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                             Click the microphone button (turns red when listening). 
                             Speak naturally - voice converts to text automatically.
                           </p>
@@ -427,24 +427,43 @@ export function SovereignHeader({
                 <DialogDescription className="text-base pt-4 space-y-4">
                   <div className="space-y-2">
                     <h3 className="font-bold text-foreground text-lg">🏫 Local Classroom (Mesh Layout)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Connection Path:</strong> Local Peer-to-Peer mesh network using device-to-device communication. 
                       No internet required. Messages route directly between tablets in the same physical space using 
                       Bluetooth or local WiFi mesh protocols.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Use Case:</strong> Classroom environments where students communicate directly with teachers 
                       and peers without internet dependency.
                     </p>
+                    
+                    <div className="mt-4 p-4 bg-muted/30 rounded-lg border-2 border-navigation/20">
+                      <div className="flex items-start gap-4">
+                        <div className="w-24 h-24 bg-white border-2 border-navigation rounded flex items-center justify-center flex-shrink-0">
+                          <div className="text-center">
+                            <div className="text-4xl mb-1">📱</div>
+                            <div className="text-xs font-mono" style={{ color: "#0B3C5D" }}>QR</div>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-base mb-2">Scan to Connect Teacher Laptop</h4>
+                          <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
+                            Scanning this QR code instantly opens the local machine peer-to-peer web address on any 
+                            local device browser. Students can connect their tablets to the classroom mesh network 
+                            without requiring WiFi credentials or internet access.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <h3 className="font-bold text-foreground text-lg">💬 Special-Needs Class (WhatsApp Link)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Connection Path:</strong> Messages are routed through WhatsApp Web Bridge API. 
                       Requires internet connection. Communication flows through WhatsApp's end-to-end encrypted servers.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Use Case:</strong> Special education settings where guardians and support staff monitor 
                       communication remotely via familiar WhatsApp interface.
                     </p>
@@ -452,11 +471,11 @@ export function SovereignHeader({
 
                   <div className="space-y-2">
                     <h3 className="font-bold text-foreground text-lg">🏡 Home Schooling (Zoom Broadcast)</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Connection Path:</strong> Integration with Zoom Meeting SDK. Messages are injected into 
                       active Zoom session's chat stream and closed-caption subtitle array in real-time.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-base leading-relaxed" style={{ color: "#0B3C5D" }}>
                       <strong>Use Case:</strong> Home schooling environments where students participate in remote learning. 
                       AAC messages appear instantly in Zoom chat and captions for all participants to see.
                     </p>

@@ -58,9 +58,18 @@ export default function Home() {
   };
 
   const handleCardClick = (variations: Array<{ en: string; id: string }>) => {
-    variations.forEach((variation) => {
-      addChatMessage(variation.en, variation.id);
-    });
+    let selectedIndex = 0;
+    
+    if (relationshipMode === "formal") {
+      selectedIndex = 0;
+    } else if (relationshipMode === "endearment") {
+      selectedIndex = 1;
+    } else if (relationshipMode === "peer") {
+      selectedIndex = 2;
+    }
+    
+    const selectedVariation = variations[selectedIndex] || variations[0];
+    addChatMessage(selectedVariation.en, selectedVariation.id);
   };
 
   const handleSendToPreview = (message: string) => {
