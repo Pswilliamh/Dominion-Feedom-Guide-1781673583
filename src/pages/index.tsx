@@ -1,12 +1,20 @@
-import React from 'react'
+import { NavigationDock } from "@/components/NavigationDock";
+import { CommandMatrix } from "@/components/CommandMatrix";
+import { CommunicationCanvas } from "@/components/CommunicationCanvas";
+import { SEO } from "@/components/SEO";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-foreground">Hello World</h1>
-        <p className="text-lg text-muted-foreground">This is going to be your softgen app, start by describing your project.</p>
+    <>
+      <SEO 
+        title="Dominion Freedom Pad"
+        description="Emergency operations tablet interface for critical response and command coordination"
+      />
+      <div className="h-screen w-screen overflow-hidden flex bg-background">
+        <NavigationDock />
+        <CommandMatrix />
+        <CommunicationCanvas />
       </div>
-    </main>
-  )
+    </>
+  );
 }
