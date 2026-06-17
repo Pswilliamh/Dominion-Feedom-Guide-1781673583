@@ -1,5 +1,14 @@
-import { Home, Truck, DollarSign, Shield, AlertTriangle } from "lucide-react";
+"use client";
+
+import { Home, Truck, DollarSign, Shield, AlertTriangle, Calendar, Calculator, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavModule {
   id: string;
@@ -15,9 +24,13 @@ const modules: NavModule[] = [
   { id: "security", label: "SECURITY", icon: Shield, color: "text-security" },
 ];
 
-export function NavigationDock() {
+interface NavigationDockProps {
+  onGeminiClick: () => void;
+}
+
+export function NavigationDock({ onGeminiClick }: NavigationDockProps) {
   return (
-    <aside className="w-32 bg-navigation flex flex-col items-center py-8 gap-6">
+    <aside className="w-32 bg-navigation flex flex-col items-center py-8 gap-4">
       {modules.map((module) => {
         const Icon = module.icon;
         return (
@@ -32,6 +45,62 @@ export function NavigationDock() {
           </button>
         );
       })}
+
+      <div className="w-full border-t border-white/20 my-2" />
+
+      <button className="flex flex-col items-center gap-2 px-4 py-4 w-full hover:bg-white/10 transition-colors group">
+        <Calendar className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+        <span className="text-white text-xs font-semibold tracking-wide text-center">
+          CALENDAR
+        </span>
+      </button>
+
+      <button className="flex flex-col items-center gap-2 px-4 py-4 w-full hover:bg-white/10 transition-colors group">
+        <Calculator className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+        <span className="text-white text-xs font-semibold tracking-wide text-center">
+          CALCULATOR
+        </span>
+      </button>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex flex-col items-center gap-2 px-4 py-4 w-full hover:bg-white/10 transition-colors group">
+            <div className="relative">
+              <div className="w-8 h-8 rounded bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span className="text-navigation text-xs font-bold">G</span>
+              </div>
+              <ChevronDown className="w-3 h-3 text-white absolute -bottom-1 -right-1" />
+            </div>
+            <span className="text-white text-xs font-semibold tracking-wide text-center">
+              WORKSPACE
+            </span>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="right" className="ml-2">
+          <DropdownMenuItem>
+            <span className="text-blue-600 font-semibold mr-2">📄</span>
+            Google Docs
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span className="text-green-600 font-semibold mr-2">📊</span>
+            Google Sheets
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span className="text-yellow-600 font-semibold mr-2">📁</span>
+            Google Drive
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <button 
+        onClick={onGeminiClick}
+        className="flex flex-col items-center gap-2 px-4 py-4 w-full bg-gemini/20 hover:bg-gemini/30 transition-colors group border-y border-gemini/40"
+      >
+        <Sparkles className="w-8 h-8 text-gemini group-hover:scale-110 transition-transform" />
+        <span className="text-gemini text-xs font-bold tracking-wide text-center">
+          GEMINI AI
+        </span>
+      </button>
 
       <div className="flex-1" />
 

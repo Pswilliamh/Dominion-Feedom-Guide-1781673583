@@ -22,6 +22,7 @@ const config: Config = {
         security: "hsl(var(--security))",
         emergency: "hsl(var(--emergency))",
         "card-glow": "hsl(var(--card-glow))",
+        gemini: "hsl(var(--gemini))",
         
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
