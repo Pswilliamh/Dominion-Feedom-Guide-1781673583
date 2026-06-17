@@ -84,144 +84,262 @@ export function SovereignHeader({
               </DialogDescription>
             </DialogHeader>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
-              <Card className="border-2 border-accent/30 hover:border-accent transition-colors">
+            <div className="space-y-8 py-6">
+              {/* SECTION 1: ABOUT US & GOVERNANCE */}
+              <Card className="border-2 border-navigation/30">
                 <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-accent">1</span>
-                    </div>
-                    <CardTitle className="font-heading text-xl">Select Relationship Frequency</CardTitle>
-                  </div>
-                  <CardDescription className="text-sm">
-                    Choose the emotional tone for your communications
-                  </CardDescription>
+                  <CardTitle className="font-heading text-2xl text-navigation flex items-center gap-2">
+                    <Shield className="w-6 h-6" />
+                    About Us & Governance
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">👑</span>
-                    <div>
-                      <p className="font-bold text-sm">Formal Mode</p>
-                      <p className="text-xs text-muted-foreground">
-                        Adds "Sir/Ma'am" (English) or "Pak/Bu" (Indonesian) prefix. 
-                        Best for professional or respectful contexts.
-                      </p>
+                <CardContent className="space-y-4">
+                  <p className="text-base leading-relaxed text-foreground">
+                    The Dominion Freedom Guide is developed and authorized under the stewardship of the 
+                    <strong> Ministry of Wellness & Education</strong> within the <strong>Kingdom of Heaven Embassy Governance</strong>. 
+                    While this platform is intimately designed to help the many struggling and suffering children across the globe, 
+                    we believe that every person is an architect of reality, endowed with an inherent right to 
+                    <strong> absolute linguistic sovereignty</strong>.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* SECTION 2: SYSTEM CAPABILITIES MATRIX */}
+              <Card className="border-2 border-accent/30">
+                <CardHeader>
+                  <CardTitle className="font-heading text-2xl text-accent flex items-center gap-2">
+                    <Globe className="w-6 h-6" />
+                    System Capabilities Matrix
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <span className="text-2xl">👑❤️🌱</span>
+                      <div>
+                        <h4 className="font-bold text-base mb-1">Relationship Modifiers</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Dynamic emotional tone adjustment with Formal, Endearment, and Peer modes. 
+                          Automatically adds culturally-appropriate prefixes to all communications.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">❤️</span>
-                    <div>
-                      <p className="font-bold text-sm">Endearment Mode</p>
-                      <p className="text-xs text-muted-foreground">
-                        Adds "Dear" (English) or "Sayang" (Indonesian) prefix. 
-                        For close relationships and family settings.
-                      </p>
+
+                    <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <span className="text-2xl">🎯📱</span>
+                      <div>
+                        <h4 className="font-bold text-base mb-1">Visual Dictionary Matrices</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Tactile micro-icons for rapid communication. Categories include Nourishment, Wardrobe, 
+                          Transport, Security, Financial, and Daily Life with sub-item visual representations.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">🌱</span>
-                    <div>
-                      <p className="font-bold text-sm">Peer Mode</p>
-                      <p className="text-xs text-muted-foreground">
-                        Adds "Hey" (English) or "Hei" (Indonesian) prefix. 
-                        For casual friend-to-friend communication.
-                      </p>
+
+                    <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <span className="text-2xl">📡💬</span>
+                      <div>
+                        <h4 className="font-bold text-base mb-1">Dual-Sovereignty Routing</h4>
+                        <p className="text-sm text-muted-foreground">
+                          WhatsApp Web Bridge for remote monitoring AND Local Offline Mesh Network for 
+                          peer-to-peer communication without internet dependency.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <span className="text-2xl">🏡📹</span>
+                      <div>
+                        <h4 className="font-bold text-base mb-1">Home School Classroom Zoom Bridge</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Real-time integration with Zoom Meeting SDK. Messages route to chat stream and 
+                          closed-caption subtitle arrays for remote learning environments.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <span className="text-2xl">🎤🔊</span>
+                      <div>
+                        <h4 className="font-bold text-base mb-1">Local Dictation Microphone & Offline Text-to-Speech Output</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Native browser Speech Recognition API for voice-to-text conversion. 
+                          Text-to-Speech synthesis using window.speechSynthesis — works 100% offline.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-financial/30 hover:border-financial transition-colors">
+              {/* SECTION 3: TECHNOLOGY NOTICE & ACCESS */}
+              <Card className="border-2 border-gold/30" style={{ borderColor: "#D4AF37" }}>
                 <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 rounded-full bg-financial/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-financial">2</span>
-                    </div>
-                    <CardTitle className="font-heading text-xl">Set Environmental Scenario</CardTitle>
-                  </div>
-                  <CardDescription className="text-sm">
-                    Configure the communication routing path
-                  </CardDescription>
+                  <CardTitle className="font-heading text-2xl text-gold flex items-center gap-2" style={{ color: "#D4AF37" }}>
+                    <Info className="w-6 h-6" />
+                    Technology Notice & Access
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">🏫</span>
-                    <div>
-                      <p className="font-bold text-sm">Local Classroom</p>
-                      <p className="text-xs text-muted-foreground">
-                        Peer-to-peer mesh network. Works 100% offline. 
-                        Messages route between devices via Bluetooth/WiFi mesh.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">💬</span>
-                    <div>
-                      <p className="font-bold text-sm">Special-Needs Class</p>
-                      <p className="text-xs text-muted-foreground">
-                        Routes through WhatsApp Web Bridge API. 
-                        Guardians monitor remotely via WhatsApp.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">🏡</span>
-                    <div>
-                      <p className="font-bold text-sm">Home Schooling</p>
-                      <p className="text-xs text-muted-foreground">
-                        Zoom Meeting SDK integration. Messages appear in 
-                        Zoom chat stream and closed-caption subtitles.
-                      </p>
-                    </div>
+                <CardContent className="space-y-4">
+                  <p className="text-base leading-relaxed text-foreground">
+                    <strong>Technology Notification:</strong> The design features and routing matrices of this app have 
+                    utilized advanced AI technology. For more information about bulk subscriptions for homeschooling or 
+                    technology providers, please contact our support email.
+                  </p>
+                  <div className="bg-accent/10 border-l-4 border-accent p-4 rounded">
+                    <p className="text-sm font-semibold text-accent">
+                      📧 Support Contact: support@sovereignembassy.org
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Available for enterprise licensing, educational institution partnerships, and technical integration support.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-gemini/30 hover:border-gemini transition-colors">
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 rounded-full bg-gemini/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-gemini">3</span>
-                    </div>
-                    <CardTitle className="font-heading text-xl">Broadcast Natively</CardTitle>
-                  </div>
-                  <CardDescription className="text-sm">
-                    Three ways to communicate your message
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">🎯</span>
-                    <div>
-                      <p className="font-bold text-sm">Tactile Cards</p>
-                      <p className="text-xs text-muted-foreground">
-                        Tap category cards (Nourishment, Wardrobe, Transport) 
-                        to instantly send pre-built phrases with 4 natural variations.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">⌨️</span>
-                    <div>
-                      <p className="font-bold text-sm">Manual Typing</p>
-                      <p className="text-xs text-muted-foreground">
-                        Type custom messages in the bottom input bar. 
-                        Press SPEAK to hear it aloud via native browser TTS.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xl">🎤</span>
-                    <div>
-                      <p className="font-bold text-sm">Microphone Dictation</p>
-                      <p className="text-xs text-muted-foreground">
-                        Click the microphone button (turns red when listening). 
-                        Speak naturally - voice converts to text automatically.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* OPERATIONAL WALKTHROUGH */}
+              <div className="border-t-2 border-muted pt-6">
+                <h3 className="font-heading text-2xl text-navigation mb-6">Step-by-Step Operational Guide</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <Card className="border-2 border-accent/30 hover:border-accent transition-colors">
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                          <span className="text-2xl font-bold text-accent">1</span>
+                        </div>
+                        <CardTitle className="font-heading text-xl">Select Relationship Frequency</CardTitle>
+                      </div>
+                      <CardDescription className="text-sm">
+                        Choose the emotional tone for your communications
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">👑</span>
+                        <div>
+                          <p className="font-bold text-sm">Formal Mode</p>
+                          <p className="text-xs text-muted-foreground">
+                            Adds "Sir/Ma'am" (English) or "Pak/Bu" (Indonesian) prefix. 
+                            Best for professional or respectful contexts.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">❤️</span>
+                        <div>
+                          <p className="font-bold text-sm">Endearment Mode</p>
+                          <p className="text-xs text-muted-foreground">
+                            Adds "Dear" (English) or "Sayang" (Indonesian) prefix. 
+                            For close relationships and family settings.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">🌱</span>
+                        <div>
+                          <p className="font-bold text-sm">Peer Mode</p>
+                          <p className="text-xs text-muted-foreground">
+                            Adds "Hey" (English) or "Hei" (Indonesian) prefix. 
+                            For casual friend-to-friend communication.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-2 border-financial/30 hover:border-financial transition-colors">
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-12 h-12 rounded-full bg-financial/10 flex items-center justify-center">
+                          <span className="text-2xl font-bold text-financial">2</span>
+                        </div>
+                        <CardTitle className="font-heading text-xl">Set Environmental Scenario</CardTitle>
+                      </div>
+                      <CardDescription className="text-sm">
+                        Configure the communication routing path
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">🏫</span>
+                        <div>
+                          <p className="font-bold text-sm">Local Classroom</p>
+                          <p className="text-xs text-muted-foreground">
+                            Peer-to-peer mesh network. Works 100% offline. 
+                            Messages route between devices via Bluetooth/WiFi mesh.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">💬</span>
+                        <div>
+                          <p className="font-bold text-sm">Special-Needs Class</p>
+                          <p className="text-xs text-muted-foreground">
+                            Routes through WhatsApp Web Bridge API. 
+                            Guardians monitor remotely via WhatsApp.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">🏡</span>
+                        <div>
+                          <p className="font-bold text-sm">Home Schooling</p>
+                          <p className="text-xs text-muted-foreground">
+                            Zoom Meeting SDK integration. Messages appear in 
+                            Zoom chat stream and closed-caption subtitles.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-2 border-gemini/30 hover:border-gemini transition-colors">
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-12 h-12 rounded-full bg-gemini/10 flex items-center justify-center">
+                          <span className="text-2xl font-bold text-gemini">3</span>
+                        </div>
+                        <CardTitle className="font-heading text-xl">Broadcast Natively</CardTitle>
+                      </div>
+                      <CardDescription className="text-sm">
+                        Three ways to communicate your message
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">🎯</span>
+                        <div>
+                          <p className="font-bold text-sm">Tactile Cards</p>
+                          <p className="text-xs text-muted-foreground">
+                            Tap category cards (Nourishment, Wardrobe, Transport) 
+                            to instantly send pre-built phrases with 4 natural variations.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">⌨️</span>
+                        <div>
+                          <p className="font-bold text-sm">Manual Typing</p>
+                          <p className="text-xs text-muted-foreground">
+                            Type custom messages in the bottom input bar. 
+                            Press SPEAK to hear it aloud via native browser TTS.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-xl">🎤</span>
+                        <div>
+                          <p className="font-bold text-sm">Microphone Dictation</p>
+                          <p className="text-xs text-muted-foreground">
+                            Click the microphone button (turns red when listening). 
+                            Speak naturally - voice converts to text automatically.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             </div>
 
             <DialogFooter>
