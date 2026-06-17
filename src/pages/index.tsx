@@ -8,30 +8,11 @@ import { CommandMatrix } from "@/components/CommandMatrix";
 import { CommunicationCanvas, type ChatMessage } from "@/components/CommunicationCanvas";
 import { GeminiChatbox } from "@/components/GeminiChatbox";
 import { TTSAudioBar } from "@/components/TTSAudioBar";
+import { GoogleMapsView } from "@/components/GoogleMapsView";
+import { YouTubeView } from "@/components/YouTubeView";
 import { SEO } from "@/components/SEO";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Radio } from "lucide-react";
-
-const messageTranslations = {
-  meals: { en: "I need a meal", id: "Saya butuh makanan" },
-  water: { en: "I need water", id: "Saya butuh air" },
-  snacks: { en: "I need a snack", id: "Saya butuh camilan" },
-  shirts: { en: "I need a shirt", id: "Saya butuh kemeja" },
-  pants: { en: "I need pants", id: "Saya butuh celana" },
-  shoes: { en: "I need shoes", id: "Saya butuh sepatu" },
-  car: { en: "I need car transport", id: "Saya butuh transportasi mobil" },
-  truck: { en: "I need truck transport", id: "Saya butuh transportasi truk" },
-  location: { en: "I need location assistance", id: "Saya butuh bantuan lokasi" },
-  protection: { en: "I need security protection", id: "Saya butuh perlindungan keamanan" },
-  safety: { en: "I need safety assistance", id: "Saya butuh bantuan keselamatan" },
-  alert: { en: "Security alert needed", id: "Peringatan keamanan diperlukan" },
-  payment: { en: "I need to make a payment", id: "Saya perlu melakukan pembayaran" },
-  budget: { en: "I need budget assistance", id: "Saya butuh bantuan anggaran" },
-  account: { en: "I need account information", id: "Saya butuh informasi akun" },
-  home: { en: "I need home assistance", id: "Saya butuh bantuan rumah" },
-  schedule: { en: "I need schedule help", id: "Saya butuh bantuan jadwal" },
-  tasks: { en: "I need task assistance", id: "Saya butuh bantuan tugas" },
-};
 
 export default function Home() {
   const [isGeminiOpen, setIsGeminiOpen] = useState(false);
@@ -39,6 +20,7 @@ export default function Home() {
   const [relationshipMode, setRelationshipMode] = useState<RelationshipMode>("formal");
   const [isOffline, setIsOffline] = useState(false);
   const [language, setLanguage] = useState<"en" | "id">("en");
+  const [currentView, setCurrentView] = useState<"matrix" | "maps" | "youtube">("matrix");
 
   const addChatMessage = (textEn: string, textId: string) => {
     let formattedEn = textEn;
@@ -65,11 +47,10 @@ export default function Home() {
     setChatMessages((prev) => [...prev, newMessage]);
   };
 
-  const handleCardClick = (messageEn: string, messageKey: string) => {
-    const translation = messageTranslations[messageKey as keyof typeof messageTranslations];
-    if (translation) {
-      addChatMessage(messageEn, translation.id);
-    }
+  const handleCardClick = (variations: Array<{ en: string; id: string }>) => {
+    variations.forEach((variation) => {
+      addChatMessage(variation.en, variation.id);
+    });
   };
 
   const handleSendToPreview = (message: string) => {
@@ -105,10 +86,19 @@ export default function Home() {
         
         <RelationshipToggle onModeChange={setRelationshipMode} />
         <div className="flex-1 flex overflow-hidden">
-          <NavigationDock onGeminiClick={() => setIsGeminiOpen(true)} />
+          <NavigationDock 
+            onGeminiClick={() => setIsGeminiOpen(true)} 
+            onViewChange={setCurrentView}
+          />
           <div className="flex-1 flex flex-col overflow-hidden">
-            <CommandMatrix onCardClick={handleCardClick} language={language} />
-            <TTSAudioBar onSendMessage={handleTTSMessage} />
+            {currentView === "matrix" && (
+              <>
+                <CommandMatrix onCardClick={handleCardClick} language={language} />
+                <TTSAudioBar onSendMessage={handleTTSMessage} />
+              </>
+            )}
+            {currentView === "maps" && <GoogleMapsView />}
+            {currentView === "youtube" && <YouTubeView />}
           </div>
           <CommunicationCanvas messages={chatMessages} />
           <GeminiChatbox 

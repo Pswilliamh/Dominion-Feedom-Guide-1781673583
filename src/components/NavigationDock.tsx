@@ -1,8 +1,7 @@
 "use client";
 
-import { Home, Truck, DollarSign, Shield, AlertTriangle, Calendar, Calculator, Sparkles, ChevronDown } from "lucide-react";
+import { Home, Truck, DollarSign, Shield, AlertTriangle, Calendar, Calculator, Sparkles, ChevronDown, Map, Youtube } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,9 +25,10 @@ const modules: NavModule[] = [
 
 interface NavigationDockProps {
   onGeminiClick: () => void;
+  onViewChange?: (view: string) => void;
 }
 
-export function NavigationDock({ onGeminiClick }: NavigationDockProps) {
+export function NavigationDock({ onGeminiClick, onViewChange }: NavigationDockProps) {
   return (
     <aside className="w-32 bg-navigation flex flex-col items-center py-8 gap-4 overflow-y-auto sidebar-scroll">
       {modules.map((module) => {
@@ -36,6 +36,7 @@ export function NavigationDock({ onGeminiClick }: NavigationDockProps) {
         return (
           <button
             key={module.id}
+            onClick={() => onViewChange?.("matrix")}
             className="flex flex-col items-center gap-2 px-4 py-6 w-full hover:bg-white/10 transition-colors group"
           >
             <Icon className={cn("w-10 h-10", module.color, "group-hover:scale-110 transition-transform")} />
@@ -59,6 +60,26 @@ export function NavigationDock({ onGeminiClick }: NavigationDockProps) {
         <Calculator className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
         <span className="text-white text-xs font-semibold tracking-wide text-center">
           CALCULATOR
+        </span>
+      </button>
+
+      <button 
+        onClick={() => onViewChange?.("maps")}
+        className="flex flex-col items-center gap-2 px-4 py-4 w-full hover:bg-white/10 transition-colors group"
+      >
+        <Map className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+        <span className="text-white text-xs font-semibold tracking-wide text-center">
+          MAPS
+        </span>
+      </button>
+
+      <button 
+        onClick={() => onViewChange?.("youtube")}
+        className="flex flex-col items-center gap-2 px-4 py-4 w-full hover:bg-white/10 transition-colors group"
+      >
+        <Youtube className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+        <span className="text-white text-xs font-semibold tracking-wide text-center">
+          YOUTUBE
         </span>
       </button>
 

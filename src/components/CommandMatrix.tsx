@@ -57,51 +57,119 @@ const translations = {
   },
 };
 
-const messageTranslations = {
-  en: {
-    meals: "I need a meal",
-    water: "I need water",
-    snacks: "I need a snack",
-    shirts: "I need a shirt",
-    pants: "I need pants",
-    shoes: "I need shoes",
-    car: "I need car transport",
-    truck: "I need truck transport",
-    location: "I need location assistance",
-    protection: "I need security protection",
-    safety: "I need safety assistance",
-    alert: "Security alert needed",
-    payment: "I need to make a payment",
-    budget: "I need budget assistance",
-    account: "I need account information",
-    home: "I need home assistance",
-    schedule: "I need schedule help",
-    tasks: "I need task assistance",
-  },
-  id: {
-    meals: "Saya butuh makanan",
-    water: "Saya butuh air",
-    snacks: "Saya butuh camilan",
-    shirts: "Saya butuh kemeja",
-    pants: "Saya butuh celana",
-    shoes: "Saya butuh sepatu",
-    car: "Saya butuh transportasi mobil",
-    truck: "Saya butuh transportasi truk",
-    location: "Saya butuh bantuan lokasi",
-    protection: "Saya butuh perlindungan keamanan",
-    safety: "Saya butuh bantuan keselamatan",
-    alert: "Peringatan keamanan diperlukan",
-    payment: "Saya perlu melakukan pembayaran",
-    budget: "Saya butuh bantuan anggaran",
-    account: "Saya butuh informasi akun",
-    home: "Saya butuh bantuan rumah",
-    schedule: "Saya butuh bantuan jadwal",
-    tasks: "Saya butuh bantuan tugas",
-  },
+const phraseVariations = {
+  meals: [
+    { en: "I need a meal", id: "Saya butuh makanan" },
+    { en: "Could I please have some food", id: "Bisakah saya minta makanan" },
+    { en: "I would like something to eat", id: "Saya ingin makan sesuatu" },
+    { en: "May I have a meal", id: "Bolehkah saya makan" },
+  ],
+  water: [
+    { en: "I need water", id: "Saya butuh air" },
+    { en: "Could I please have some water", id: "Bisakah saya minta air" },
+    { en: "May I have a drink of water", id: "Bolehkah saya minum air" },
+    { en: "I would like some water", id: "Saya ingin air" },
+  ],
+  snacks: [
+    { en: "I need a snack", id: "Saya butuh camilan" },
+    { en: "Could I please have a snack", id: "Bisakah saya minta camilan" },
+    { en: "May I have something light to eat", id: "Bolehkah saya makan ringan" },
+    { en: "I would like a small bite", id: "Saya ingin camilan kecil" },
+  ],
+  shirts: [
+    { en: "I need a shirt", id: "Saya butuh kemeja" },
+    { en: "Could I please have a clean shirt", id: "Bisakah saya minta kemeja bersih" },
+    { en: "May I have a shirt", id: "Bolehkah saya minta kemeja" },
+    { en: "I would like a fresh shirt", id: "Saya ingin kemeja baru" },
+  ],
+  pants: [
+    { en: "I need pants", id: "Saya butuh celana" },
+    { en: "Could I please have clean pants", id: "Bisakah saya minta celana bersih" },
+    { en: "May I have some pants", id: "Bolehkah saya minta celana" },
+    { en: "I would like fresh pants", id: "Saya ingin celana baru" },
+  ],
+  shoes: [
+    { en: "I need shoes", id: "Saya butuh sepatu" },
+    { en: "Could I please have shoes", id: "Bisakah saya minta sepatu" },
+    { en: "May I have a pair of shoes", id: "Bolehkah saya minta sepasang sepatu" },
+    { en: "I would like shoes", id: "Saya ingin sepatu" },
+  ],
+  car: [
+    { en: "I need car transport", id: "Saya butuh transportasi mobil" },
+    { en: "Could I please have a car", id: "Bisakah saya minta mobil" },
+    { en: "May I arrange for car transportation", id: "Bolehkah saya mengatur transportasi mobil" },
+    { en: "I would like a vehicle", id: "Saya ingin kendaraan" },
+  ],
+  truck: [
+    { en: "I need truck transport", id: "Saya butuh transportasi truk" },
+    { en: "Could I please have a truck", id: "Bisakah saya minta truk" },
+    { en: "May I arrange for truck transportation", id: "Bolehkah saya mengatur transportasi truk" },
+    { en: "I would like a truck", id: "Saya ingin truk" },
+  ],
+  location: [
+    { en: "I need location assistance", id: "Saya butuh bantuan lokasi" },
+    { en: "Could I please get directions", id: "Bisakah saya minta petunjuk arah" },
+    { en: "May I have location help", id: "Bolehkah saya minta bantuan lokasi" },
+    { en: "I would like navigation support", id: "Saya ingin bantuan navigasi" },
+  ],
+  protection: [
+    { en: "I need security protection", id: "Saya butuh perlindungan keamanan" },
+    { en: "Could I please have security assistance", id: "Bisakah saya minta bantuan keamanan" },
+    { en: "May I request protection", id: "Bolehkah saya minta perlindungan" },
+    { en: "I would like security support", id: "Saya ingin dukungan keamanan" },
+  ],
+  safety: [
+    { en: "I need safety assistance", id: "Saya butuh bantuan keselamatan" },
+    { en: "Could I please have safety support", id: "Bisakah saya minta dukungan keselamatan" },
+    { en: "May I request safety help", id: "Bolehkah saya minta bantuan keselamatan" },
+    { en: "I would like to ensure safety", id: "Saya ingin memastikan keselamatan" },
+  ],
+  alert: [
+    { en: "Security alert needed", id: "Peringatan keamanan diperlukan" },
+    { en: "Please send a security alert", id: "Tolong kirim peringatan keamanan" },
+    { en: "May I trigger an alert", id: "Bolehkah saya memicu peringatan" },
+    { en: "I need to raise an alarm", id: "Saya perlu membunyikan alarm" },
+  ],
+  payment: [
+    { en: "I need to make a payment", id: "Saya perlu melakukan pembayaran" },
+    { en: "Could I please process a payment", id: "Bisakah saya memproses pembayaran" },
+    { en: "May I complete a transaction", id: "Bolehkah saya menyelesaikan transaksi" },
+    { en: "I would like to pay", id: "Saya ingin membayar" },
+  ],
+  budget: [
+    { en: "I need budget assistance", id: "Saya butuh bantuan anggaran" },
+    { en: "Could I please review my budget", id: "Bisakah saya meninjau anggaran saya" },
+    { en: "May I have budget support", id: "Bolehkah saya minta dukungan anggaran" },
+    { en: "I would like financial planning help", id: "Saya ingin bantuan perencanaan keuangan" },
+  ],
+  account: [
+    { en: "I need account information", id: "Saya butuh informasi akun" },
+    { en: "Could I please check my account", id: "Bisakah saya cek akun saya" },
+    { en: "May I access account details", id: "Bolehkah saya mengakses detail akun" },
+    { en: "I would like account support", id: "Saya ingin dukungan akun" },
+  ],
+  home: [
+    { en: "I need home assistance", id: "Saya butuh bantuan rumah" },
+    { en: "Could I please have help at home", id: "Bisakah saya minta bantuan di rumah" },
+    { en: "May I request household support", id: "Bolehkah saya minta dukungan rumah tangga" },
+    { en: "I would like home services", id: "Saya ingin layanan rumah" },
+  ],
+  schedule: [
+    { en: "I need schedule help", id: "Saya butuh bantuan jadwal" },
+    { en: "Could I please review my schedule", id: "Bisakah saya meninjau jadwal saya" },
+    { en: "May I have scheduling assistance", id: "Bolehkah saya minta bantuan penjadwalan" },
+    { en: "I would like to organize my time", id: "Saya ingin mengatur waktu saya" },
+  ],
+  tasks: [
+    { en: "I need task assistance", id: "Saya butuh bantuan tugas" },
+    { en: "Could I please get help with tasks", id: "Bisakah saya minta bantuan dengan tugas" },
+    { en: "May I have task support", id: "Bolehkah saya minta dukungan tugas" },
+    { en: "I would like help organizing tasks", id: "Saya ingin bantuan mengatur tugas" },
+  ],
 };
 
 interface CommandMatrixProps {
-  onCardClick?: (messageEn: string, messageId: string) => void;
+  onCardClick?: (variations: Array<{ en: string; id: string }>) => void;
   language: "en" | "id";
 }
 
@@ -166,9 +234,20 @@ export function CommandMatrix({ onCardClick, language }: CommandMatrixProps) {
   ];
 
   const handleItemClick = (messageKey: string) => {
-    if (onCardClick) {
-      const messageEn = messageTranslations.en[messageKey as keyof typeof messageTranslations.en];
-      onCardClick(messageEn, messageKey);
+    const variations = phraseVariations[messageKey as keyof typeof phraseVariations];
+    if (variations && onCardClick) {
+      onCardClick(variations);
+      
+      const textToSpeak = variations[0].en;
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.lang = "en-US";
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
     }
   };
 
