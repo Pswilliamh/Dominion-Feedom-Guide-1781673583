@@ -1,141 +1,144 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Volume2, Play, Mic, MicOff } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { useState, useRef } from "react";
+import { Mic, MicOff, Volume2, Hand } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SignLanguageKeyboard } from "@/components/SignLanguageKeyboard";
 
 interface TTSAudioBarProps {
   onSendMessage?: (text: string) => void;
 }
 
 export function TTSAudioBar({ onSendMessage }: TTSAudioBarProps) {
-  const [text, setText] = useState("");
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [recognition, setRecognition] = useState<any>(null);
+  const [inputText, setInputText] = useState("");
+  const [showKeyboard, setShowKeyboard] = useState(false);
+  const recognitionRef = useRef<any>(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        const recognitionInstance = new SpeechRecognition();
-        recognitionInstance.continuous = false;
-        recognitionInstance.interimResults = false;
-        recognitionInstance.lang = "en-US";
-
-        recognitionInstance.onresult = (event: any) => {
-          const transcript = event.results[0][0].transcript;
-          setText(transcript);
-          if (onSendMessage) {
-            onSendMessage(transcript);
-          }
-          setIsListening(false);
-        };
-
-        recognitionInstance.onerror = () => {
-          setIsListening(false);
-        };
-
-        recognitionInstance.onend = () => {
-          setIsListening(false);
-        };
-
-        setRecognition(recognitionInstance);
-      }
-    }
-  }, [onSendMessage]);
-
-  const handleMicrophoneToggle = () => {
-    if (!recognition) {
-      alert("Speech Recognition is not supported in this browser");
+  const handleVoiceInput = () => {
+    if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+      alert("Speech recognition not supported in this browser");
       return;
     }
 
     if (isListening) {
-      recognition.stop();
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
       setIsListening(false);
-    } else {
-      recognition.start();
-      setIsListening(true);
+      return;
     }
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognitionRef.current = recognition;
+
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setInputText(transcript);
+      setIsListening(false);
+    };
+
+    recognition.onerror = () => {
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
   };
 
-  const handleSpeak = () => {
-    if (!text.trim()) return;
-
-    if (onSendMessage) {
-      onSendMessage(text);
-    }
+  const handleTextToSpeech = () => {
+    if (!inputText.trim()) return;
 
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      
-      const utterance = new SpeechSynthesisUtterance(text);
+      const utterance = new SpeechSynthesisUtterance(inputText);
       utterance.lang = "en-US";
       utterance.rate = 1.0;
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
-
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => {
-        setIsSpeaking(false);
-        setText("");
-      };
-      utterance.onerror = () => setIsSpeaking(false);
-
       window.speechSynthesis.speak(utterance);
-    } else {
-      alert("Text-to-Speech is not supported in this browser");
+      
+      if (onSendMessage) {
+        onSendMessage(inputText);
+      }
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleSpeak();
+      handleTextToSpeech();
+    }
+  };
+
+  const handleLetterClick = (letter: string) => {
+    if (letter === "BACKSPACE") {
+      setInputText((prev) => prev.slice(0, -1));
+    } else {
+      setInputText((prev) => prev + letter);
     }
   };
 
   return (
-    <div className="w-full bg-muted border-t-2 border-border px-8 py-4">
-      <div className="flex items-center gap-4">
-        <Volume2 className="w-6 h-6 text-foreground/60" />
-        <span className="text-sm font-semibold text-foreground/70 uppercase tracking-wide whitespace-nowrap">
-          Type to Speak Natively:
-        </span>
-        <div className="flex-1 flex items-center gap-3">
-          <Button
-            onClick={handleMicrophoneToggle}
-            size="lg"
-            variant={isListening ? "destructive" : "outline"}
-            className={`px-4 ${isListening ? "bg-red-600 hover:bg-red-700 animate-pulse" : ""}`}
-          >
-            {isListening ? (
-              <Mic className="w-6 h-6 text-white" />
-            ) : (
-              <Mic className="w-6 h-6" />
-            )}
-          </Button>
-          <Input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder={isListening ? "Listening..." : "Enter text to speak aloud or use microphone..."}
-            className="flex-1 text-base"
-            disabled={isListening}
-          />
-          <Button
-            onClick={handleSpeak}
-            disabled={!text.trim() || isSpeaking}
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground flex items-center gap-2 px-6"
-          >
-            <Play className="w-6 h-6" fill="currentColor" />
-            <span className="font-bold">SPEAK</span>
-          </Button>
-        </div>
+    <>
+      <div className="border-t-2 border-accent/20 bg-white p-3 md:p-4 flex items-center gap-2 md:gap-3">
+        <Button
+          onClick={handleVoiceInput}
+          variant={isListening ? "default" : "outline"}
+          size="sm"
+          className={`${isListening ? "bg-emergency text-white animate-pulse" : "border-accent/40 text-accent hover:bg-accent/10"}`}
+        >
+          {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+        </Button>
+
+        <Input
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder="Type or speak your message..."
+          className="flex-1 border-accent/40 focus:border-accent text-base"
+        />
+
+        <Button
+          onClick={() => setShowKeyboard(!showKeyboard)}
+          variant="outline"
+          size="sm"
+          className={`${showKeyboard ? "bg-accent text-white" : "border-accent/40 text-accent hover:bg-accent/10"}`}
+        >
+          <Hand className="h-4 w-4 mr-1" />
+          <span className="hidden md:inline">🤟 Sign</span>
+        </Button>
+
+        <Button
+          onClick={handleTextToSpeech}
+          disabled={!inputText.trim()}
+          variant="default"
+          size="sm"
+          className="bg-accent hover:bg-accent/90 text-white font-bold"
+        >
+          <Volume2 className="h-4 w-4 md:mr-2" />
+          <span className="hidden md:inline">Send</span>
+        </Button>
       </div>
-    </div>
+
+      {showKeyboard && (
+        <SignLanguageKeyboard
+          onLetterClick={handleLetterClick}
+          onClose={() => setShowKeyboard(false)}
+        />
+      )}
+    </>
   );
 }
