@@ -257,38 +257,42 @@ export function CommandMatrix({ onCardClick, language }: CommandMatrixProps) {
         {categories.map((category) => (
           <div
             key={category.id}
-            className="bg-white rounded-lg border-2 border-card-glow/30 shadow-lg shadow-card-glow/20 hover:border-card-glow/60 hover:shadow-card-glow/40 transition-all duration-300 flex flex-col p-6"
+            className="bg-white rounded-lg border-2 border-card-glow/30 shadow-lg shadow-card-glow/20 hover:border-card-glow/60 hover:shadow-card-glow/40 transition-all duration-300 flex flex-col"
             style={{ backgroundColor: "#F8FAFC" }}
           >
-            <h3 className="text-xl font-bold text-center font-heading mb-6" style={{ color: "#000000" }}>
+            <h3 className="text-xl font-bold text-center font-heading py-4" style={{ color: "#000000" }}>
               {category.title}
             </h3>
-            <div className="flex-1 grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3 p-2 flex-1">
               {category.items.map((item, idx) => {
                 const Icon = item.icon;
                 
                 // Determine animation class based on category
                 let animationClass = "";
                 if (category.id === 2) {
-                  // Wardrobe items (Shirts, Pants, Shoes) - sway animation
-                  animationClass = "animate-sway";
+                  // Wardrobe items - sway animation
+                  animationClass = "v-sway";
                 } else if (category.id === 1) {
-                  // Nourishment items - ripple for water, float for others
-                  animationClass = item.messageKey === "water" ? "animate-ripple" : "animate-float";
+                  // Nourishment items - pulse animation
+                  animationClass = "v-pulse";
                 }
                 
                 return (
                   <button
                     key={idx}
                     onClick={() => handleItemClick(item.messageKey)}
-                    className="flex flex-col items-center justify-between p-3 rounded-2xl bg-white border-2 border-accent/20 hover:border-accent/60 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-200 transform cursor-pointer group active:scale-90 active:bg-blue-100"
+                    className="flex flex-col items-center justify-start active:scale-92 active:bg-blue-50 transition-all duration-150 transform cursor-pointer rounded-xl overflow-hidden"
                   >
-                    <div className={`w-full aspect-square bg-gradient-to-br from-accent/20 via-accent/10 to-accent/5 rounded-xl flex items-center justify-center mb-3 group-hover:scale-105 transition-transform duration-300 shadow-inner ${animationClass}`}>
-                      <Icon className="w-3/5 h-3/5 text-accent group-hover:animate-pulse" strokeWidth={2.5} />
+                    {/* Top 65% - Visual Box */}
+                    <div className={`w-full bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-center ${animationClass}`} style={{ height: "65%" }}>
+                      <Icon className="w-full h-full text-accent" strokeWidth={2} />
                     </div>
-                    <span className="text-sm font-bold text-center leading-tight w-full" style={{ color: "#000000" }}>
-                      {item.label}
-                    </span>
+                    {/* Bottom 35% - Label */}
+                    <div className="w-full flex items-center justify-center" style={{ height: "35%" }}>
+                      <span className="text-sm font-bold text-center leading-tight px-1" style={{ color: "#000000" }}>
+                        {item.label}
+                      </span>
+                    </div>
                   </button>
                 );
               })}
