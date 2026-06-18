@@ -281,7 +281,7 @@ export function CommandMatrix({ onCardClick, language }: CommandMatrixProps) {
                   <button
                     key={idx}
                     onClick={() => handleItemClick(item.messageKey)}
-                    className="flex flex-col items-center justify-start active:scale-92 active:bg-blue-50 transition-all duration-150 transform cursor-pointer rounded-xl overflow-hidden"
+                    className="flex flex-col items-center justify-start active:scale-[0.92] active:bg-blue-50 transition-all duration-150 transform cursor-pointer rounded-xl overflow-hidden"
                   >
                     {/* Top 65% - Visual Box */}
                     <div className={`w-full bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-center ${animationClass}`} style={{ height: "65%" }}>
