@@ -270,12 +270,12 @@ export function CommandMatrix({ onCardClick, language }: CommandMatrixProps) {
                   <button
                     key={idx}
                     onClick={() => handleItemClick(item.messageKey)}
-                    className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white border-2 border-accent/20 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-200 cursor-pointer group"
+                    className="flex flex-col items-center justify-between p-3 rounded-2xl bg-white border-2 border-accent/20 hover:border-accent/60 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 cursor-pointer group active:scale-95"
                   >
-                    <div className="w-20 h-20 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Icon className="w-12 h-12 text-accent" strokeWidth={2} />
+                    <div className="w-full aspect-square bg-gradient-to-br from-accent/20 via-accent/10 to-accent/5 rounded-xl flex items-center justify-center mb-3 group-hover:scale-105 group-active:scale-95 transition-transform duration-300 shadow-inner">
+                      <Icon className="w-3/5 h-3/5 text-accent group-hover:animate-pulse" strokeWidth={2.5} />
                     </div>
-                    <span className="text-base font-bold text-center leading-tight" style={{ color: "#000000" }}>
+                    <span className="text-sm font-bold text-center leading-tight w-full" style={{ color: "#000000" }}>
                       {item.label}
                     </span>
                   </button>
