@@ -32,19 +32,49 @@ export default function Home() {
   const [emergencyContactName, setEmergencyContactName] = useState("Emergency Coordinator");
   const [emergencyContactPhone, setEmergencyContactPhone] = useState("+1234567890");
 
-  const addChatMessage = (textEn: string, textId: string) => {
+  // Simulated inbound message listener - runs in background
+  useState(() => {
+    const teacherResponses = [
+      { en: "Great job! I received your message.", id: "Kerja bagus! Saya menerima pesan Anda." },
+      { en: "Thank you for letting me know.", id: "Terima kasih telah memberi tahu saya." },
+      { en: "I understand. How can I help you?", id: "Saya mengerti. Bagaimana saya bisa membantu Anda?" },
+      { en: "Got it! Please wait a moment.", id: "Mengerti! Tolong tunggu sebentar." },
+      { en: "I'm here to support you.", id: "Saya di sini untuk mendukung Anda." },
+    ];
+
+    const interval = setInterval(() => {
+      // Simulate random inbound messages from teacher (30% chance every 15 seconds)
+      if (Math.random() < 0.3 && chatMessages.length > 0) {
+        const randomResponse = teacherResponses[Math.floor(Math.random() * teacherResponses.length)];
+        const inboundMessage: ChatMessage = {
+          id: `teacher-${Date.now()}`,
+          textEn: randomResponse.en,
+          textId: randomResponse.id,
+          timestamp: new Date(),
+          sender: "teacher",
+        };
+        setChatMessages((prev) => [...prev, inboundMessage]);
+      }
+    }, 15000); // Check every 15 seconds
+
+    return () => clearInterval(interval);
+  });
+
+  const addChatMessage = (textEn: string, textId: string, sender: "student" | "teacher" = "student") => {
     let formattedEn = textEn;
     let formattedId = textId;
     
-    if (relationshipMode === "formal") {
-      formattedEn = `Sir/Ma'am, ${textEn}`;
-      formattedId = `Pak/Bu, ${textId}`;
-    } else if (relationshipMode === "endearment") {
-      formattedEn = `Dear, ${textEn}`;
-      formattedId = `Sayang, ${textId}`;
-    } else if (relationshipMode === "peer") {
-      formattedEn = `Hey, ${textEn}`;
-      formattedId = `Hei, ${textId}`;
+    if (sender === "student") {
+      if (relationshipMode === "formal") {
+        formattedEn = `Sir/Ma'am, ${textEn}`;
+        formattedId = `Pak/Bu, ${textId}`;
+      } else if (relationshipMode === "endearment") {
+        formattedEn = `Dear, ${textEn}`;
+        formattedId = `Sayang, ${textId}`;
+      } else if (relationshipMode === "peer") {
+        formattedEn = `Hey, ${textEn}`;
+        formattedId = `Hei, ${textId}`;
+      }
     }
 
     const newMessage: ChatMessage = {
@@ -53,11 +83,12 @@ export default function Home() {
       textId: formattedId,
       timestamp: new Date(),
       isZoomCaption: scenario === "zoom",
+      sender: sender,
     };
 
     setChatMessages((prev) => [...prev, newMessage]);
     
-    if (scenario === "zoom") {
+    if (scenario === "zoom" && sender === "student") {
       console.log("📹 Zoom Integration: Message routed to chat stream and captions:", {
         chat: formattedEn,
         captions: formattedEn,

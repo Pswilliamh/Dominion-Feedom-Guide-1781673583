@@ -12,6 +12,7 @@ export interface ChatMessage {
   textId: string;
   timestamp: Date;
   isZoomCaption?: boolean;
+  sender: "student" | "teacher";
 }
 
 interface CommunicationCanvasProps {
@@ -122,9 +123,17 @@ export function CommunicationCanvas({ messages, scenario, onManualMessage }: Com
               ) : (
                 <>
                   {messages.map((message) => (
-                    <div key={message.id} className="bg-gray-700/50 rounded px-3 py-2 border-l-2 border-blue-500">
+                    <div key={message.id} className={`rounded px-3 py-2 ${
+                      message.sender === "student"
+                        ? "bg-gray-700/50 border-l-2 border-blue-500"
+                        : "bg-amber-900/30 border-l-2 border-amber-500"
+                    }`}>
                       <div className="flex items-baseline gap-2 mb-1">
-                        <span className="text-[10px] font-bold text-blue-400">You</span>
+                        <span className={`text-[10px] font-bold ${
+                          message.sender === "student" ? "text-blue-400" : "text-amber-400"
+                        }`}>
+                          {message.sender === "student" ? "You" : "Teacher/Helper"}
+                        </span>
                         <span className="text-[9px] text-gray-500">
                           {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </span>
@@ -132,13 +141,17 @@ export function CommunicationCanvas({ messages, scenario, onManualMessage }: Com
                       <p className="text-xs text-white leading-relaxed font-medium">
                         {message.textEn}
                       </p>
-                      <p className="text-[11px] text-gray-400 italic mt-0.5">
-                        {message.textId}
-                      </p>
-                      <div className="flex items-center gap-1 mt-1 text-[9px] text-blue-300">
-                        <Video className="w-3 h-3" />
-                        <span>Sent to captions</span>
-                      </div>
+                      {message.textId !== message.textEn && (
+                        <p className="text-[11px] text-gray-400 italic mt-0.5">
+                          {message.textId}
+                        </p>
+                      )}
+                      {message.sender === "student" && (
+                        <div className="flex items-center gap-1 mt-1 text-[9px] text-blue-300">
+                          <Video className="w-3 h-3" />
+                          <span>Sent to captions</span>
+                        </div>
+                      )}
                     </div>
                   ))}
                   <div ref={messagesEndRef} />
@@ -213,15 +226,26 @@ export function CommunicationCanvas({ messages, scenario, onManualMessage }: Com
           ) : (
             <>
               {messages.map((message) => (
-                <div key={message.id} className="flex justify-end">
-                  <div className="max-w-[85%] bg-accent text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-md relative">
-                    <p className="text-sm font-medium leading-relaxed">
+                <div key={message.id} className={`flex ${message.sender === "student" ? "justify-end" : "justify-start"}`}>
+                  <div className={`max-w-[85%] ${
+                    message.sender === "student" 
+                      ? "bg-accent text-white rounded-2xl rounded-tr-sm" 
+                      : "bg-gradient-to-br from-amber-50 to-yellow-50 text-gray-800 rounded-2xl rounded-tl-sm border-2 border-amber-200/50"
+                  } px-4 py-3 shadow-md relative`}>
+                    {message.sender === "teacher" && (
+                      <p className="text-[10px] font-bold text-amber-600 uppercase tracking-wide mb-1">
+                        Teacher/Helper
+                      </p>
+                    )}
+                    <p className={`text-sm font-medium leading-relaxed ${message.sender === "teacher" ? "text-gray-800" : ""}`}>
                       {message.textEn}
                     </p>
-                    <p className="text-xs italic opacity-80 mt-1 leading-relaxed">
-                      {message.textId}
-                    </p>
-                    <p className="text-[10px] opacity-60 mt-1 text-right">
+                    {message.textId !== message.textEn && (
+                      <p className={`text-xs italic mt-1 leading-relaxed ${message.sender === "student" ? "opacity-80" : "text-gray-600"}`}>
+                        {message.textId}
+                      </p>
+                    )}
+                    <p className={`text-[10px] mt-1 ${message.sender === "student" ? "opacity-60 text-right" : "text-amber-600"}`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
