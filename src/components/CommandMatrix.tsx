@@ -314,7 +314,18 @@ export function CommandMatrix({ onCardClick, language, relationshipMode, emergen
     if (variations && onCardClick) {
       onCardClick(variations);
       
-      const textToSpeak = variations[0].en;
+      // Select the appropriate variation based on relationship mode
+      let selectedIndex = 0;
+      if (relationshipMode === "formal") {
+        selectedIndex = 0;
+      } else if (relationshipMode === "endearment") {
+        selectedIndex = 1;
+      } else if (relationshipMode === "peer") {
+        selectedIndex = 2;
+      }
+      
+      const selectedVariation = variations[selectedIndex] || variations[0];
+      const textToSpeak = language === "en" ? selectedVariation.en : selectedVariation.id;
       
       // Special handling for alert messages - send to WhatsApp
       if (messageKey === "alert" && emergencyContactPhone) {
@@ -327,7 +338,7 @@ export function CommandMatrix({ onCardClick, language, relationshipMode, emergen
       if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = "en-US";
+        utterance.lang = language === "en" ? "en-US" : "id-ID";
         utterance.rate = 1.0;
         utterance.pitch = 1.0;
         utterance.volume = 1.0;

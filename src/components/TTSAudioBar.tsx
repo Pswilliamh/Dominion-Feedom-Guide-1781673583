@@ -8,9 +8,10 @@ import { SignLanguageKeyboard } from "@/components/SignLanguageKeyboard";
 
 interface TTSAudioBarProps {
   onSendMessage?: (text: string) => void;
+  language: "en" | "id";
 }
 
-export function TTSAudioBar({ onSendMessage }: TTSAudioBarProps) {
+export function TTSAudioBar({ onSendMessage, language }: TTSAudioBarProps) {
   const [isListening, setIsListening] = useState(false);
   const [inputText, setInputText] = useState("");
   const [showKeyboard, setShowKeyboard] = useState(false);
@@ -36,7 +37,7 @@ export function TTSAudioBar({ onSendMessage }: TTSAudioBarProps) {
 
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = "en-US";
+    recognition.lang = language === "en" ? "en-US" : "id-ID";
 
     recognition.onstart = () => {
       setIsListening(true);
@@ -65,7 +66,7 @@ export function TTSAudioBar({ onSendMessage }: TTSAudioBarProps) {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(inputText);
-      utterance.lang = "en-US";
+      utterance.lang = language === "en" ? "en-US" : "id-ID";
       utterance.rate = 1.0;
       utterance.pitch = 1.0;
       utterance.volume = 1.0;

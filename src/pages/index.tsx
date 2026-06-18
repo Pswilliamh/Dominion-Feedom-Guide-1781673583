@@ -123,7 +123,7 @@ export default function Home() {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
+      utterance.lang = language === "en" ? "en-US" : "id-ID";
       utterance.rate = 1.0;
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
@@ -183,7 +183,7 @@ export default function Home() {
                   emergencyContactName={emergencyContactName}
                   emergencyContactPhone={emergencyContactPhone}
                 />
-                <TTSAudioBar onSendMessage={handleTTSMessage} />
+                <TTSAudioBar onSendMessage={handleTTSMessage} language={language} />
               </>
             )}
             {currentView === "maps" && <GoogleMapsView />}
