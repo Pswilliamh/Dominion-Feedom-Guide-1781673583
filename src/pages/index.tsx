@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SovereignHeader, type ScenarioType } from "@/components/SovereignHeader";
+import { SystemFooter } from "@/components/SystemFooter";
 import { RelationshipToggle, type RelationshipMode } from "@/components/RelationshipToggle";
 import { NavigationDock } from "@/components/NavigationDock";
 import { CommandMatrix } from "@/components/CommandMatrix";
@@ -139,14 +140,7 @@ export default function Home() {
         description="Emergency operations tablet interface for critical response and command coordination"
       />
       <div className="h-screen w-screen overflow-hidden flex flex-col bg-background">
-        <SovereignHeader 
-          isOffline={isOffline} 
-          onOfflineToggle={setIsOffline}
-          language={language}
-          onLanguageChange={setLanguage}
-          scenario={scenario}
-          onScenarioChange={setScenario}
-        />
+        <SovereignHeader />
         
         {isOffline && (
           <Alert className="rounded-none border-x-0 border-t-0 border-b-4 border-transport bg-transport/10">
@@ -223,6 +217,15 @@ export default function Home() {
             />
           )}
         </div>
+
+        <SystemFooter
+          isOffline={isOffline}
+          onOfflineToggle={setIsOffline}
+          language={language}
+          onLanguageChange={setLanguage}
+          scenario={scenario}
+          onScenarioChange={setScenario}
+        />
       </div>
     </>
   );
