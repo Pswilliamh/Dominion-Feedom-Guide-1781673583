@@ -27,6 +27,7 @@ import {
   getMessages,
   type ChatMessageStorage 
 } from "@/lib/storage";
+import { DailyRoutineSchedule } from "@/components/DailyRoutineSchedule";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,6 +40,7 @@ export default function Home() {
   const [scenario, setScenario] = useState<ScenarioType>("local");
   const [activeVault, setActiveVault] = useState<"daily" | "transport" | "financial" | null>(null);
   const [showSecurityModal, setShowSecurityModal] = useState(false);
+  const [showDailySchedule, setShowDailySchedule] = useState(false);
   const [emergencyContactName, setEmergencyContactName] = useState("Emergency Coordinator");
   const [emergencyContactPhone, setEmergencyContactPhone] = useState("+1234567890");
 
@@ -319,6 +321,14 @@ export default function Home() {
                 currentPhone={emergencyContactPhone}
               />
             )}
+
+            {/* Daily Routine Schedule */}
+            {showDailySchedule && (
+              <DailyRoutineSchedule
+                language={language}
+                onClose={() => setShowDailySchedule(false)}
+              />
+            )}
           </div>
 
           <SystemFooter
@@ -328,6 +338,7 @@ export default function Home() {
             onLanguageChange={setLanguage}
             scenario={scenario}
             onScenarioChange={setScenario}
+            onScheduleOpen={() => setShowDailySchedule(true)}
           />
         </div>
       )}

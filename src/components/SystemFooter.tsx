@@ -1,6 +1,6 @@
 "use client";
 
-import { Wifi, Radio, Globe, Info, HelpCircle } from "lucide-react";
+import { Wifi, Radio, Globe, Info, HelpCircle, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -27,19 +27,13 @@ interface SystemFooterProps {
   isOffline: boolean;
   onOfflineToggle: (offline: boolean) => void;
   language: "en" | "id";
-  onLanguageChange: (lang: "en" | "id") => void;
+  onLanguageChange: (language: "en" | "id") => void;
   scenario: ScenarioType;
   onScenarioChange: (scenario: ScenarioType) => void;
+  onScheduleOpen?: () => void;
 }
 
-export function SystemFooter({
-  isOffline,
-  onOfflineToggle,
-  language,
-  onLanguageChange,
-  scenario,
-  onScenarioChange
-}: SystemFooterProps) {
+export function SystemFooter({ isOffline, onOfflineToggle, language, onLanguageChange, scenario, onScenarioChange, onScheduleOpen }: SystemFooterProps) {
   const scenarioLabels = {
     local: "🏫 Local Classroom",
     whatsapp: "💬 Special-Needs Class",
@@ -165,18 +159,12 @@ export function SystemFooter({
 
   return (
     <footer className="w-full bg-navigation border-t-2 border-accent px-4 py-2 flex items-center justify-between gap-3 z-50">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <Dialog>
           <DialogTrigger asChild>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="hover:bg-white/10 flex items-center gap-2 px-3 py-1"
-            >
-              <HelpCircle className="w-4 h-4 text-gold" style={{ color: "#D4AF37" }} />
-              <span className="text-gold font-semibold text-xs" style={{ color: "#D4AF37" }}>
-                ❓ How It Works
-              </span>
+            <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 font-semibold">
+              <HelpCircle className="w-4 h-4 mr-2" />
+              {language === "en" ? "❓ How It Works" : "❓ Cara Kerja"}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -286,6 +274,15 @@ export function SystemFooter({
           </DialogContent>
         </Dialog>
 
+        {onScheduleOpen && (
+          <Button onClick={onScheduleOpen} variant="ghost" size="sm" className="text-white hover:bg-white/20 font-semibold">
+            <Clock className="w-4 h-4 mr-2" />
+            {language === "en" ? "📅 Daily Schedule" : "📅 Jadwal Harian"}
+          </Button>
+        )}
+      </div>
+
+      <div className="flex items-center gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 

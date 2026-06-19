@@ -1,11 +1,11 @@
 ---
 title: Picture-First Communication Cards with Real Photos
-status: todo
+status: done
 priority: high
 type: feature
-tags: [accessibility, visual, photos, cards]
+tags: [accessibility, photos, visual-learning]
 created_by: agent
-created_at: 2026-06-19T06:05:14Z
+created_at: 2026-06-19T06:06:00Z
 position: 11
 ---
 
